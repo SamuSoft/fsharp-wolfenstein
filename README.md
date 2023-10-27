@@ -45,6 +45,23 @@ To build it for distribution
 
 * npm run build
 
+#### Docker
+
+You can build your own Docker container containing the dev server of F#/Fable if you're 
+having issues with the local runtime. To do so:
+
+* Windows
+  * Install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+  * Install [WSL Linux](https://learn.microsoft.com/en-us/windows/wsl/install)
+  * Restart computer
+  * Open Docker, and go to `Settings -> Resources -> WSL integration` and enable Docker 
+integration with the Linux distribution you chose to use.
+  * For live updates of code changes, you'd need to clone this repo to the Linux side of the file system. 
+* Mac/Linux
+  * Install Docker
+
+In your Unix-terminal, go to this repo. run `make create build start` to start the server.
+
 ### Desktop
 
 You will need .net 6 installed to run this. To run the game:
