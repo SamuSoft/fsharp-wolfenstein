@@ -17,6 +17,7 @@
     <Compile Include="CrossPlatform\Map.fs" />
     <Compile Include="CrossPlatform\AI.fs" />
     <Compile Include="CrossPlatform\Dissolver.fs" />
+    <Compile Include="CrossPlatform\QueueClient.fs" />
     <Compile Include="CrossPlatform\Update.fs" />
     <Compile Include="CrossPlatform\Render.fs" />
     <Compile Include="CrossPlatform\Game.fs" />

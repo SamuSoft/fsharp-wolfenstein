@@ -3,6 +3,7 @@ module App.Update
 open App.Audio
 open App.Model
 open App.AI
+open App.QueueClient
 
 let private weaponAnimationFrameTime = 100.<ms>
 let private actionDistanceTolerance = 0.75
@@ -183,6 +184,8 @@ let updateFrame game nextLevel frameTime createPixelDissolver (renderingResult:W
     | false, None, true ->
       if (game.Player.CurrentWeapon.RequiresAmmunition && game.Player.Ammunition > 0<bullets>) || not game.Player.CurrentWeapon.RequiresAmmunition then
         let updatedWeapon = { currentWeapon with CurrentFrame = 1 }
+        // Send fire event
+        sendWeaponFireEvent () |> Async.Start
         
         // begin firing
         playSoundEffect game game.Camera.Position SoundEffect.PlayerPistol
@@ -259,7 +262,7 @@ let updateFrame game nextLevel frameTime createPixelDissolver (renderingResult:W
       | EnemyStateType.Standing
       | EnemyStateType.Path _ ->
         let volume = calculateVolumeOfPlayerRelativeToEnemy game e.BasicGameObject.Position
-        Utils.log $"Volume as heard: {volume}"
+        // Utils.log $"Volume as heard: {volume}"
         if (volume > 0.5 || (volume > 0.1 && random.Next(255) < 128) || (volume > 0.0 && random.Next(255) < 64)) && e.State <> EnemyStateType.Ambushing then
           Utils.log $"Enemy at {e.BasicGameObject.MapPosition} heard the player"
           { e with MoveToChaseRequired = true }

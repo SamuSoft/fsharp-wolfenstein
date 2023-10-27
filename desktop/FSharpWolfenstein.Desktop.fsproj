@@ -45,6 +45,9 @@
         <Compile Include="..\browser\src\CrossPlatform\Dissolver.fs">
           <Link>Dissolver.fs</Link>
         </Compile>
+        <Compile Include="..\browser\src\CrossPlatform\QueueClient.fs">
+            <Link>QueueClient.fs</Link>
+        </Compile>
         <Compile Include="..\browser\src\CrossPlatform\Update.fs">
           <Link>Update.fs</Link>
         </Compile>
